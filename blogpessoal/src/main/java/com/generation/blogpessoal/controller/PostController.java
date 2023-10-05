@@ -48,27 +48,27 @@ public class PostController {
 	}
 	
 	@GetMapping("/title/{title}")
-	public ResponseEntity<List<Post>> getByTitulo(@PathVariable String titulo){
-		return ResponseEntity.ok(postRepository.findAllByTitleContainingIgnoreCase(titulo));
+	public ResponseEntity<List<Post>> getByTitle(@PathVariable String title){
+		return ResponseEntity.ok(postRepository.findAllByTitleContainingIgnoreCase(title));
 		}
 	
 	@PostMapping
-	public ResponseEntity<Post> post(@Valid @RequestBody Post postagem){
-		if(themeRepository.existsById(postagem.getTheme().getId()))
-		return ResponseEntity.status(HttpStatus.CREATED).body(postRepository.save(postagem));
+	public ResponseEntity<Post> post(@Valid @RequestBody Post post){
+		if(themeRepository.existsById(post.getTheme().getId()))
+		return ResponseEntity.status(HttpStatus.CREATED).body(postRepository.save(post));
 		
-		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Tema não existe!", null);
+		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Theme not exist!", null);
 	}
 	
 	@PutMapping
-	public ResponseEntity<Post> put(@Valid @RequestBody Post postagem){
+	public ResponseEntity<Post> put(@Valid @RequestBody Post post){
 		
-		if (postRepository.existsById(postagem.getId())) {
+		if (postRepository.existsById(post.getId())) {
 			
-			if(themeRepository.existsById(postagem.getTheme().getId()))
-				return ResponseEntity.status(HttpStatus.OK).body(postRepository.save(postagem));
+			if(themeRepository.existsById(post.getTheme().getId()))
+				return ResponseEntity.status(HttpStatus.OK).body(postRepository.save(post));
 			
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Tema não existe!", null);
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Theme not exist!", null);
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}
@@ -76,9 +76,9 @@ public class PostController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete (@PathVariable Long id) {
-		Optional <Post> postagem = postRepository.findById(id);
+		Optional <Post> post = postRepository.findById(id);
 		
-		if(postagem.isEmpty())
+		if(post.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		
 		postRepository.deleteById(id);

@@ -43,27 +43,27 @@ public class ThemeController {
 	}
 	
 	@GetMapping("/description/{description}")
-	public ResponseEntity<List<Theme>> getByTitle(@PathVariable String descricao){
-		return ResponseEntity.ok(themeRepository.findAllByDescriptionContainingIgnoreCase(descricao));
+	public ResponseEntity<List<Theme>> getByDescription(@PathVariable String description){
+		return ResponseEntity.ok(themeRepository.findAllByDescriptionContainingIgnoreCase(description));
 	}
 	
 	@PostMapping 
-	public ResponseEntity<Theme> post(@Valid @RequestBody Theme tema){
-		return ResponseEntity.status(HttpStatus.CREATED).body(themeRepository.save(tema));
+	public ResponseEntity<Theme> post(@Valid @RequestBody Theme theme){
+		return ResponseEntity.status(HttpStatus.CREATED).body(themeRepository.save(theme));
 	}
 	
 	@PutMapping
-	public ResponseEntity<Theme> put (@Valid @RequestBody Theme tema){
-		return themeRepository.findById(tema.getId()).map(resposta -> ResponseEntity.status(HttpStatus.CREATED)
-				.body(themeRepository.save(tema))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	public ResponseEntity<Theme> put (@Valid @RequestBody Theme theme){
+		return themeRepository.findById(theme.getId()).map(resposta -> ResponseEntity.status(HttpStatus.CREATED)
+				.body(themeRepository.save(theme))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<Theme> tema = themeRepository.findById(id);
+		Optional<Theme> theme = themeRepository.findById(id);
 		
-		if(tema.isEmpty())
+		if(theme.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		
 		themeRepository.deleteById(id);
