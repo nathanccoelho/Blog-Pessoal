@@ -8,13 +8,20 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.generation.blogpessoal.model.User;
 
+/*UserDetails(detalhes do usuário) é uma interface que trabalha com autenticação e libera autorizações para 
+ * os usuários. 
+ * Como um cracha de uma empresa que autentica a catraca.
+ * Porém pra uma reunião somente quem tem autorização participará.*/
 public class UserDetailsImpl implements UserDetails{
 
+	
+	//Identificador único para cada tipo de usuário, sistema de serelização.
 	private static final long serialVersionUID= 1L;
 	
+	
+	//Atributos para os usuários.
 	private String userName;
 	private String password;
-	
 	private List<GrantedAuthority> authorities;
 	
 	public UserDetailsImpl (User user) {
@@ -26,6 +33,8 @@ public class UserDetailsImpl implements UserDetails{
 		
 	}
 
+	
+	//métodos sobre-escritos.
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub

@@ -21,6 +21,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+
+/*Essa classe faz uma serie de filtros e validações baseado nas variáeis que declaramos ali.
+ * os headers é um metadado para capturar nas requisições. É um parametro que vem pelo cabeçario da infomação.
+ * Através pel JSON.
+ * 
+ * 
+ * */
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
 
@@ -35,6 +42,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
 										FilterChain filterChain) throws ServletException, IOException, java.io.IOException{
 		
+		/*captura o token e faz os teste para validações.*/
 		String authHeader = request.getHeader("Authorization");
 		String token = null;
 		String username = null;
@@ -44,21 +52,26 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 				token = authHeader.substring(7);
 				username = jwtService.extractUsername(token);
 			}
+			
+			/*Verifica o username e através do token cria o objeto userDetails.*/
 			if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 				UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 				
+				//Ocorre a autenticação do token.
 				if (jwtService.validateToken(token, userDetails)) {
 					UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 					authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 					SecurityContextHolder.getContext().setAuthentication(authToken);
 				}
 			}
+			//Compartilha a informação do nosso token para o restante do código. e o catch é as tratativa de erro.
+			
 			filterChain.doFilter(request, response);
+			
 		} catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException | SignatureException | ResponseStatusException e) {
 			response.setStatus(HttpStatus.FORBIDDEN.value());
 			return;
 		}
-		
 		
 	}
 }

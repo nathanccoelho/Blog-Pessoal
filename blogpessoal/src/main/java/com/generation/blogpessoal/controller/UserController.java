@@ -44,10 +44,7 @@ public class UserController {
 		return userRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
-	
-	
-	//@GetMapping("/user/{user}")
-	//public ResponseEntity<List<User>>  getByUser
+
 
 	
 	@PostMapping("/login")
