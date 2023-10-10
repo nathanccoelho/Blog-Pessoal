@@ -39,6 +39,10 @@ public class Post {
 	@ManyToOne
 	@JsonIgnoreProperties("post")
 	private Theme theme;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("post")
+	private User user;
 
 	
 	//Getters and Setters;
@@ -80,6 +84,14 @@ public class Post {
 
 	public void setTheme(Theme theme) {
 		this.theme = theme;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	
