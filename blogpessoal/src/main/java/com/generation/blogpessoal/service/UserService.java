@@ -35,7 +35,7 @@ public class UserService {
 	}
 	
 	 private String generatedToken(String user) {
-		 return "Bearer" + jwtService.generateToken(user);
+		 return "Bearer " + jwtService.generateToken(user);
 	 }
 	 
 	 public Optional<User> registerUser(User user){
