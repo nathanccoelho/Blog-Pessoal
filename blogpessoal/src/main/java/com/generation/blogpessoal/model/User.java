@@ -38,12 +38,24 @@ public class User {
 	private String password;
 	
 	@NotBlank (message = "O atributo imgUrl é Obrigatório!")
-	@Size(min = 10, max = 5000, message = "O atributo imgUrl deve conter no mínimo 10 e no máximo 1000 caracteres")
+	@Size( max = 5000, message = "O atributo imgUrl deve conter no máximo 1000 caracteres")
 	private String imgUrl;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("user")
 	private List<Post> post;
+	
+	
+	
+	public User(Long id, String name, String user, String password, String imgUrl) {
+		this.id = id;
+		this.name = name;
+		this.user = user;
+		this.password = password;
+		this.imgUrl = imgUrl;
+	}
+	
+	public User() { }
 
 	
 	//Getters and Setters;
