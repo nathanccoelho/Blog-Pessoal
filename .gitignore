@@ -1,6 +1,15 @@
 /.metadata/
-/.settings/
-.settings
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!/src/main//target/
+!/src/test//target/
 
-/.classpath/
+STS
+.apt_generated
 .classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
