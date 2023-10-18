@@ -59,31 +59,4 @@ public class SwaggerConfig {
 	private ApiResponse createApiResponse(String message) {
 		return new ApiResponse().description(message);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
