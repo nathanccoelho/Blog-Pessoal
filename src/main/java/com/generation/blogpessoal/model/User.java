@@ -1,39 +1,39 @@
-package com.generation.blogpessoal.model;
+	package com.generation.blogpessoal.model;
 
-import java.util.List;
+	import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+	import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+	import io.swagger.v3.oas.annotations.media.Schema;
+	import jakarta.persistence.CascadeType;
+	import jakarta.persistence.Entity;
+	import jakarta.persistence.FetchType;
+	import jakarta.persistence.GeneratedValue;
+	import jakarta.persistence.GenerationType;
+	import jakarta.persistence.Id;
+	import jakarta.persistence.OneToMany;
+	import jakarta.persistence.Table;
+	import jakarta.validation.constraints.Email;
+	import jakarta.validation.constraints.NotBlank;
+	import jakarta.validation.constraints.NotNull;
+	import jakarta.validation.constraints.Size;
 
 @Entity
-@Table (name ="tb_users")
+@Table(name = "tb_users")
 public class User {
 
 	
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull (message = "O atributo name é Obrigatório!")
+	@NotNull(message = "O atributo name é Obrigatório!")
 	private String name;
 	
 	
 	@Schema(example = "email@email.com.br")
-	@NotNull(message = "O atributo user é Obrigatório!")
-	@Email(message = "O atributo user deve ser um email válido!")
+    @NotNull(message ="O atributo user é Obrigatório!")
+	@Email(message ="O atributo user deve ser um email válido!")
 	private String user;
 	
 	@NotBlank (message = "O atributo password é Obrigatório!")

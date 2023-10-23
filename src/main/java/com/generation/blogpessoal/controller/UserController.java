@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.generation.blogpessoal.model.User;
 import com.generation.blogpessoal.model.UserLogin;
+import com.generation.blogpessoal.model.User;
 import com.generation.blogpessoal.repository.UserRepository;
 import com.generation.blogpessoal.service.UserService;
 
@@ -54,11 +54,10 @@ public class UserController {
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 	
-	@PostMapping("/register")
-	public ResponseEntity<User> postUser(@RequestBody @Valid User user){
-		return userService.registerUser(user)
-				.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
-				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+	 public ResponseEntity<User> postUsuario(@RequestBody @Valid User user) {
+		 return userService.registerUser(user)
+				 .map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
+				 .orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}
 	
 	@PutMapping("/update")
