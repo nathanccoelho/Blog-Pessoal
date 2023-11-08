@@ -1,5 +1,5 @@
 # Blog Pessoal
-Blog Pessoal é um projeto individual realizado na Generation Brasil. Criei uma o Back-end de uma rede social utilizando o SpringBoot com Java e os conceitos de CRUD.
+Blog Pessoal é um projeto individual realizado na Generation Brasil. Criei o Back-end de uma rede social utilizando o SpringBoot com Java e os conceitos de CRUD.
 
 ### Você encontrará:
 - CRUD.
